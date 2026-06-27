@@ -1,0 +1,20 @@
+server:
+  listen_addr: ":8080"
+  admin_addr: ":9090"
+  read_header_timeout: 5s
+  shutdown_timeout: 10s
+
+access_log:
+  enabled: true
+
+routes:
+  - id: default
+    host: ""
+    path_prefix: /
+    strip_prefix: ""
+    upstreams:
+      - url: http://127.0.0.1:8081
+    rate_limit:
+      enabled: true
+      requests_per_second: 100
+      burst: 200
